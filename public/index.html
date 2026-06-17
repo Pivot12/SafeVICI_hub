@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SafeVICI — Neel Shah · Safety-critical hardware, software & autonomy</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231F3A5F'/%3E%3Cg fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round'%3E%3Crect x='5' y='6.4' width='14' height='11.6' rx='3.2'/%3E%3Cline x1='12' y1='4' x2='12' y2='6'/%3E%3Cline x1='9.7' y1='15' x2='14.3' y2='15'/%3E%3C/g%3E%3Cg fill='white'%3E%3Ccircle cx='12' cy='3.4' r='1'/%3E%3Ccircle cx='9.7' cy='11.4' r='1.4'/%3E%3Ccircle cx='14.3' cy='11.4' r='1.4'/%3E%3C/g%3E%3C/svg%3E">
 <meta name="description" content="SafeVICI is a small suite of working tools on automotive & autonomy regulation and AV safety data, built by Neel Shah — a product leader executing safety-critical hardware, software, and autonomy systems." />
 <meta property="og:title" content="SafeVICI — built by Neel Shah" />
 <meta property="og:description" content="Working tools on automotive & AV regulation and autonomous-vehicle safety data." />
@@ -75,7 +76,17 @@
 <div class="wrap">
   <header>
     <div class="top">
-      <div class="mark">S</div>
+      <div class="mark" aria-label="SafeVICI">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3.3v2"/>
+          <circle cx="12" cy="2.7" r="1.05" fill="#fff" stroke="none"/>
+          <rect x="5" y="5.4" width="14" height="12.2" rx="3.3"/>
+          <circle cx="9.6" cy="11" r="1.45" fill="#fff" stroke="none"/>
+          <circle cx="14.4" cy="11" r="1.45" fill="#fff" stroke="none"/>
+          <path d="M9.7 14.7h4.6"/>
+          <path d="M3.2 9.7v2.6M20.8 9.7v2.6"/>
+        </svg>
+      </div>
       <div class="brand">SafeVICI<small>Tools by Neel Shah</small></div>
     </div>
   </header>
@@ -83,7 +94,7 @@
   <section class="hero">
     <span class="eyebrow">Safety-critical hardware · software · autonomy</span>
     <h1>Working tools at the seam of <span class="em">regulation and autonomy</span>.</h1>
-    <p class="lede">I'm Neel Shah — a product leader executing safety-critical hardware, software, and autonomy systems. These are small, live tools I built to make automotive &amp; AV regulation and safety data actually usable. Each runs on official public sources, cites them, and updates itself.</p>
+    <p class="lede">I'm Neel Shah — a product leader executing safety-critical hardware, software, and autonomy systems. These are live tools I built to make regulation and safety data across automotive, autonomous vehicles, and robotics genuinely usable — at a moment when AI is reshaping these disciplines and forcing all of us to question our sources. Each tool draws only on official public sources, cites them, and keeps itself current.</p>
     <div class="cta">
       <a class="btn primary" href="https://www.linkedin.com/in/neelshah29" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-2.95-1.8-2.95s-2.08 1.4-2.08 2.85V21H10z"/></svg>
@@ -117,9 +128,51 @@
 
   <section class="about">
     <h2>Why I build these</h2>
-    <p>Fifteen years in the automotive industry — electro-mechanical systems development, systems engineering, and program management — taught me that the gap between a regulation and a shipped, safe system is where the real work lives. I'm now focused on that gap in autonomy and robotics: turning standards, safety data, and hardware-software integration into things people can actually use and trust.</p>
-    <p>These tools are that thesis, working in public. If you're building in autonomy, AV safety, or safety-critical systems and any of this is useful — or worth a conversation — I'd like to hear from you.</p>
+    <p>Electro-mechanical systems research, systems engineering, software development, and large-program management taught me one thing: a shipped, safe system lives or dies on regulatory compliance. Shaping safety proactively — while Physical AI advances at lightning pace — isn't just responsible; it's the better business model. I focus on that gap in autonomy and robotics, turning hardware-software integration into products people can actually use and trust.</p>
+    <p>These tools are that thesis, working in public. If you're building in autonomy, AV safety, or safety-critical systems — and any of this is useful, or worth a conversation — I'd love to hear from you.</p>
   </section>
+
+  <style>
+    .writing{display:flex;flex-direction:column;gap:12px}
+    .post{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;box-shadow:var(--shadow)}
+    .post:hover{transform:translateY(-2px);border-color:var(--soft)}
+    .post-src{display:inline-block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+    .post-title{display:block;font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:5px}
+    .post-desc{display:block;font-size:14.5px;color:var(--muted);margin-bottom:10px}
+  </style>
+
+  <div class="section-label">Writing &amp; talks</div>
+  <div class="writing">
+
+    <!-- ============================================================
+         ADD A NEW POST: copy one <a class="post"> … </a> block below,
+         then change the href, the source label, the title and the
+         description. Works for Trace.Space pieces, LinkedIn articles
+         or posts, talks, podcasts — anything with a link.
+         ============================================================ -->
+
+    <a class="post" href="https://www.trace.space/events/webinars/fireside-chat-what-ai-actually-means-for-systems-engineering" target="_blank" rel="noopener">
+      <span class="post-src">Trace.Space · Fireside chat</span>
+      <span class="post-title">What AI Actually Means for Systems Engineering</span>
+      <span class="post-desc">A practitioner conversation with Trace.Space's Janis Vavere — what's genuinely shifting, what's oversold, and why requirements remain the most underused control point in modern engineering.</span>
+      <span class="go">Watch the conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+
+    <a class="post" href="https://www.trace.space/blog" target="_blank" rel="noopener">
+      <span class="post-src">Trace.Space · Blog</span>
+      <span class="post-title">Field notes on engineering &amp; requirements</span>
+      <span class="post-desc">Writing on systems engineering, requirements, and building safety-critical products — from the Trace.Space team and contributors.</span>
+      <span class="go">Read the blog <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+
+    <a class="post" href="https://www.linkedin.com/in/neelshah29/recent-activity/all/" target="_blank" rel="noopener">
+      <span class="post-src">LinkedIn</span>
+      <span class="post-title">Notes on autonomy, safety &amp; building in public</span>
+      <span class="post-desc">Shorter, more frequent thinking — posted as I build these tools and work through the regulation-meets-autonomy problem.</span>
+      <span class="go">See recent posts <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+
+  </div>
 
   <footer>
     <span>© <span id="yr"></span> SafeVICI · Built by <strong>Neel Shah</strong></span>
