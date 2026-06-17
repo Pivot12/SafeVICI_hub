@@ -147,8 +147,9 @@
     .post-src{display:inline-block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
     .post-title{display:block;font-family:var(--serif);font-weight:600;font-size:18px;margin-bottom:5px;line-height:1.25}
     .post-desc{display:block;font-size:14px;color:var(--muted);margin-bottom:10px}
-    .post .go{margin-top:auto;font-size:13px}
-    @media(max-width:640px){.post{flex-direction:column}.post-thumb{width:100%;flex-basis:auto;height:150px}}
+    .post .go{margin-top:auto;font-size:13px;font-weight:600;color:var(--ink-blue);display:inline-flex;align-items:center;gap:6px}
+    .post .go svg{width:14px;height:14px;flex:0 0 auto}
+    @media(max-width:640px){.post{flex-direction:column}.post-thumb{width:100%;flex-basis:auto;height:160px}}
   </style>
 
   <div class="section-label">Writing &amp; talks</div>
@@ -181,6 +182,7 @@
     <a class="post" href="https://www.trace.space/blog" target="_blank" rel="noopener">
       <span class="post-thumb t2">
         <span class="emblem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 16.5h6M9 9.5h3"/></svg></span>
+        <img src="reuleaux-triangle.png" alt="Reuleaux Triangle Model for AI-Native Systems Engineering" loading="lazy" onerror="this.remove()" style="object-fit:contain;background:#fff;padding:4px">
       </span>
       <span class="post-body">
         <span class="post-src">Trace.Space · Blog</span>
@@ -213,6 +215,70 @@
     </a>
   </footer>
 </div>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* =====================================================================
+     BLOG FEED FROM GOOGLE SHEETS
+     To make the Writing & talks section update by adding a spreadsheet row:
+       1. In your Google Sheet, add a tab named "blog" with header row:
+              Title | Description | URL | Thumbnail
+          (Description and Thumbnail can be left blank — see auto-thumbnail.)
+       2. File > Share > Publish to web > choose the "blog" sheet > CSV > Publish.
+       3. Paste that published CSV link between the quotes below.
+     Add a row in the sheet -> it appears here on the next page load.
+     If this is blank or the fetch fails, the built-in cards above are shown.
+     ===================================================================== */
+  const BLOG_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTsCIZ30ia1tMnb_lXKOzT_zsgkJ1xb928IUBPulefDCDioSfOoGMrizph894UeTIBQ6AEjlf81Zokl/pub?gid=1920311648&single=true&output=csv";
+
+  (function () {
+    if (!BLOG_CSV_URL) return;
+    const TILES = ["t1", "t2", "tli"];
+    const ART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 16.5h6M9 9.5h3"/></svg>';
+    const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    const esc = s => (s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    function parseCSV(t) {
+      const rows = []; let row = [], cur = "", q = false;
+      for (let i = 0; i < t.length; i++) {
+        const c = t[i];
+        if (q) { if (c === '"') { if (t[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; }
+        else if (c === '"') q = true;
+        else if (c === ",") { row.push(cur); cur = ""; }
+        else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; }
+        else if (c !== "\r") cur += c;
+      }
+      if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+      return rows;
+    }
+
+    fetch(BLOG_CSV_URL).then(r => r.text()).then(txt => {
+      const rows = parseCSV(txt).filter(r => r.some(c => c.trim() !== ""));
+      if (rows.length < 2) return;
+      const head = rows[0].map(h => h.trim().toLowerCase());
+      const col = n => head.indexOf(n);
+      const iT = col("title"), iD = col("description"), iU = col("url"), iTh = col("thumbnail");
+      if (iT < 0 || iU < 0) return;
+      const items = rows.slice(1).map(r => ({
+        title: (r[iT] || "").trim(), desc: (iD >= 0 ? r[iD] : "").trim(),
+        url: (r[iU] || "").trim(), thumb: (iTh >= 0 ? r[iTh] : "").trim()
+      })).filter(x => x.title && x.url);
+      if (!items.length) return;
+
+      const html = items.map((x, idx) => {
+        const tile = TILES[idx % TILES.length];
+        const img = x.thumb ? `<img src="${esc(x.thumb)}" alt="" loading="lazy" onerror="this.remove()">` : "";
+        const desc = x.desc ? `<span class="post-desc">${esc(x.desc)}</span>` : "";
+        return `<a class="post" href="${esc(x.url)}" target="_blank" rel="noopener">
+            <span class="post-thumb ${tile}"><span class="emblem">${ART}</span>${img}</span>
+            <span class="post-body">
+              <span class="post-title">${esc(x.title)}</span>${desc}
+              <span class="go">Open <span style="display:inline-flex">${ARROW}</span></span>
+            </span></a>`;
+      }).join("");
+      document.querySelector(".writing").innerHTML = html;
+    }).catch(() => {/* keep static cards */});
+  })();
+</script>
 </body>
 </html>
