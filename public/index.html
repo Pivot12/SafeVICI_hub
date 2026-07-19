@@ -7,7 +7,29 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231F3A5F'/%3E%3Cg fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round'%3E%3Crect x='5' y='6.4' width='14' height='11.6' rx='3.2'/%3E%3Cline x1='12' y1='4' x2='12' y2='6'/%3E%3Cline x1='9.7' y1='15' x2='14.3' y2='15'/%3E%3C/g%3E%3Cg fill='white'%3E%3Ccircle cx='12' cy='3.4' r='1'/%3E%3Ccircle cx='9.7' cy='11.4' r='1.4'/%3E%3Ccircle cx='14.3' cy='11.4' r='1.4'/%3E%3C/g%3E%3C/svg%3E">
 <meta name="description" content="SafeVICI is a small suite of working tools on automotive & autonomy regulation and AV safety data, built by Neel Shah — a product leader executing safety-critical hardware, software, and autonomy systems." />
 <meta property="og:title" content="SafeVICI — built by Neel Shah" />
-<meta property="og:description" content="Working tools on automotive & AV regulation and autonomous-vehicle safety data." />
+<meta property="og:description" content="Working tools on automotive & AV regulation and autonomous-vehicle safety data — plus the CSA preprint: Certifying the Black Box." />
+<meta property="og:image" content="https://www.safevici.com/paper-csa-ape4.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Certifying the Black Box: Continuous Statistical Assurance for Autonomous Vehicles",
+  "author": {
+    "@type": "Person",
+    "name": "Neel Shah",
+    "url": "https://www.safevici.com",
+    "identifier": "https://orcid.org/0009-0008-5409-1696"
+  },
+  "datePublished": "2026-07-19",
+  "publisher": {"@type": "Organization", "name": "Zenodo"},
+  "identifier": "https://doi.org/10.5281/zenodo.21438788",
+  "url": "https://doi.org/10.5281/zenodo.21438788",
+  "sameAs": "https://zenodo.org/records/21438788",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "image": "https://www.safevici.com/paper-csa-ape4.png",
+  "description": "A certification framework for learned autonomous-vehicle drivers: the certificate becomes a machine-readable safety envelope — ODD boundary, statistical performance limits, calibrated confidence thresholds, pre-agreed expansion rules — computed continuously by provider and regulator. Includes a provable residual-risk bound, calibration-aware confidence gating, post-incident rollout inspection, and a tiered CSA-Baseline adoption path."
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -152,6 +174,22 @@
     @media(max-width:640px){.post{flex-direction:column}.post-thumb{width:100%;flex-basis:auto;height:160px}}
   </style>
 
+  <div class="section-label">Research</div>
+  <div class="writing" id="research">
+    <a class="post" href="https://doi.org/10.5281/zenodo.21438788" target="_blank" rel="noopener">
+      <span class="post-thumb t1">
+        <span class="emblem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 16.5h6M9 9.5h3"/></svg></span>
+        <img src="paper-csa-ape4.png" alt="APE4 framework — Continuous Statistical Assurance" loading="lazy" onerror="this.remove()" style="object-fit:contain;background:#fff;padding:4px">
+      </span>
+      <span class="post-body">
+        <span class="post-src">Preprint · Zenodo · DOI 10.5281/zenodo.21438788 · CC BY 4.0</span>
+        <span class="post-title">Certifying the Black Box: Continuous Statistical Assurance for Autonomous Vehicles</span>
+        <span class="post-desc">You cannot certify a learned driver by specification — so make the certificate a machine-readable safety envelope, computed continuously by provider and regulator alike. A full certification architecture for AVs: provable risk bounds, calibration-aware confidence gating, rollout inspection, and a tiered path adoptable below robotaxi scale. Five reproducible simulations included.</span>
+        <span class="go">Read the paper (open access) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </span>
+    </a>
+  </div>
+
   <div class="section-label">Writing &amp; talks</div>
   <div class="writing">
 
@@ -276,7 +314,7 @@
               <span class="go">Open <span style="display:inline-flex">${ARROW}</span></span>
             </span></a>`;
       }).join("");
-      document.querySelector(".writing").innerHTML = html;
+      document.querySelector(".writing:not(#research)").innerHTML = html;
     }).catch(() => {/* keep static cards */});
   })();
 </script>
